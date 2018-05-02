@@ -5,6 +5,8 @@ from argparse import ArgumentParser, ArgumentDefaultsHelpFormatter
 import vizdoom as vzd
 from tabulate import tabulate
 from warnings import warn
+import os
+import crowdai
 
 MAX_MAP = 5
 MAX_PLAYERS = 15
@@ -12,6 +14,8 @@ MAX_TIMELIMIT = 999
 DEFAULT_TIMELIMIT = 5
 WAD_FILE = "mock.wad"
 FRAMERATE = 35
+
+crowdai.update_issue_state(['begin_grading']);
 
 if __name__ == "__main__":
     parser = ArgumentParser("Host script for ViZDoom Copmetition at CIG 2017.",
@@ -174,5 +178,6 @@ if __name__ == "__main__":
         print("Name: {}, Frags: {}".format(server_state.players_names[i], server_state.players_frags[i]))
         player_frag_map[server_state.players_names[i]] = server_state.players_frags[i]
 
-
     game.close()
+
+    crowdai.update_issue_state(['waiting_for_video_generation']);

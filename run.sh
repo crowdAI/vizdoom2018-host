@@ -8,4 +8,4 @@ echo "==========================================================================
 echo "Beginning execution of host.py (grader) and save output"
 echo "================================================================================"
 
-/home/crowdai/host.py -p 1 -m 1 -r recording.lmp
+/home/crowdai/host.py -p 1 -m 1 -t 0.1 -r recording.lmp
