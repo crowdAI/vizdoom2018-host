@@ -172,4 +172,5 @@ if __name__ == "__main__":
     for i in range(players_num):
         print("Name: {}, Frags: {}".format(server_state.players_names[i], server_state.players_frags[i]))
 
+
     game.close()
