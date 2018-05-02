@@ -180,4 +180,16 @@ if __name__ == "__main__":
 
     game.close()
 
+    EXPECTED_PARTICIPANTS = os.environ["EXPECTED_PARTICIPANTS"].split(",")
+    # Filter Out unknown participants
+    unknown_agents = []
+    for _key in player_frag_map.keys():
+        if _key not in EXPECTED_PARTICIPANTS:
+            unknown_agents.append(_key)
+            # TODO : Add note that a player was filtered out
+
+    for _agent in unknown_agents:
+        del player_frag_map[_agent]
+
     crowdai.update_issue_state(['waiting_for_video_generation']);
+    crowdai.update_scores_vizdoom(player_frag_map)

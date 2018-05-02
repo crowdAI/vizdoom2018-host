@@ -30,17 +30,19 @@ def update_issue_state(states):
     issue.labels=states
     issue.save()
 
-def update_submission_score(username, score):
+def update_submission_score(crowdai_api, username, score):
     if "CROWDAI_EVALUATION" not in os.environ.keys():
         return
 
     SUBMISSION_ID = int(os.environ["CROWDAI_SUBMISSION_ID"])
     CHALLENGE_ID = os.environ["CROWDAI_CHALLENGE_ID"]
 
-    crowdai_api = _authenticate_crowdai()
+    crowdai_api.authenticate_participant_with_username(username)
     submission = crowdai_api.get_submission(CHALLENGE_ID, SUBMISSION_ID)
     submission.score = score
+    submission.score_secondary = 0
     submission.grading_status = "graded"
+    submission.message = "Score : {}".format(score)
     submission.update()
 
 def mark_submission_failed(username):
@@ -55,3 +57,17 @@ def mark_submission_failed(username):
     submission.score = score
     submission.grading_status = "graded"
     submission.update()
+
+def update_scores_vizdoom(player_maps):
+    if "CROWDAI_EVALUATION" not in os.environ.keys():
+        return
+
+    crowdai_api = _authenticate_crowdai()
+    for _player in player_maps.keys():
+        # The first 4 charts as 000-
+        # a random 3 digit number and a -
+        # and the rest are the crowdAI username
+        crowdai_username = _player[4:]
+        score = player_maps[_player]
+        update_submission_score(crowdai_api, crowdai_username, score)
+        print("Updating Score for Participant : {} || Frag Count : {}".format(crowdai_username, score))

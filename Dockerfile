@@ -39,7 +39,7 @@ RUN apt-get update && apt-get install -y \
 # Python3
 RUN pip3 install pip --upgrade
 
-RUN pip3 install crowdai_api
+RUN pip3 install -U crowdai_api
 RUN pip3 install python-gitlab
 
 RUN pip3 --no-cache-dir install \
