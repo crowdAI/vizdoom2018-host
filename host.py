@@ -168,9 +168,11 @@ if __name__ == "__main__":
     print("Final results:")
     print("Time: {:0.2f}".format(game.get_episode_time() / 60 / FRAMERATE))
 
+    player_frag_map = {}
     server_state = game.get_server_state()
     for i in range(players_num):
         print("Name: {}, Frags: {}".format(server_state.players_names[i], server_state.players_frags[i]))
+        player_frag_map[server_state.players_names[i]] = server_state.players_frags[i]
 
 
     game.close()
