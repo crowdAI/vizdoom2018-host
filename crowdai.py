@@ -26,7 +26,7 @@ def update_issue_state(states):
     ISSUE_ID=os.environ["GITLAN_ISSUE_ID"]
 
     project = gl.projects.get(int(PROJECT_ID))
-    issue=gl.projects.issues.get(int(ISSUE_ID))
+    issue=project.issues.get(int(ISSUE_ID))
     issue.labels=states
     issue.save()
 
