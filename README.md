@@ -27,7 +27,7 @@ docker run \
     /home/crowdai/run.sh <args>
 # <args> could be : 
 #    * for single player : `-b 0`
-#    * for multi player : `-b 6`
+#    * for multi player : `-b 6 --multiplayer`
 ```
 The `args` in the above command can be replaced with : 
 ```
