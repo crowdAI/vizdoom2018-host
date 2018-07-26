@@ -31,6 +31,14 @@ docker run \
 ```
 The `args` in the above command can be replaced with : 
 ```
+usage: Host script for ViZDoom Copmetition at CIG 2018. [-h] [-b BOTS_NUM]
+                                                        [-p PLAYERS_NUM]
+                                                        [-m MAP]
+                                                        [-t TIMELIMIT]
+                                                        [-r RECORD_FILE]
+                                                        [-li LOG_INTERVAL]
+                                                        [-dc] [-w] [-mp]
+
 optional arguments:
   -h, --help            show this help message and exit
   -b BOTS_NUM, --bots BOTS_NUM
@@ -46,6 +54,8 @@ optional arguments:
                         results logging inreval in minutes (default: None)
   -dc, --console        disables console output (default: False)
   -w, --watch           roam the map as a ghost spectator (default: True)
+  -mp, --multiplayer    Enables deathmatch for multiplayer modes (default:
+                        False)
 ```
 
 ### Author(s)

@@ -9,4 +9,5 @@ echo "Beginning execution of host.py (grader) and save output"
 echo "================================================================================"
 
 echo "${@:2}"
+/home/crowdai/host.py -h
 /home/crowdai/host.py ${@:2}
