@@ -77,7 +77,6 @@ COPY config config
 COPY _vizdoom.cfg .
 COPY _vizdoom.ini .
 COPY host.py .
-COPY crowdai.py .
 COPY mock.wad .
 COPY run.sh .
 RUN sudo chown ${HOST_UID}:${HOST_GID} -R *

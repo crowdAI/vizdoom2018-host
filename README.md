@@ -6,7 +6,7 @@
 ```
 pip install crowdai-repo2docker
 export image_tag="vizdoom2018_host_image"
-repo2docker --no-run \
+crowdai-repo2docker --no-run \
   --user-id 1001 \
   --user-name crowdai \
   --image-name ${image_tag} \
