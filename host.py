@@ -50,7 +50,7 @@ def run_game(args):
     game.set_doom_scenario_path(WAD_FILE)
     game.add_game_args("+viz_nocheat 1 +viz_debug 0 +viz_respawn_delay 10")
     game.add_game_args("+sv_forcerespawn 1 +sv_noautoaim 1 +sv_respawnprotect 1 +sv_spawnfarthest 1 +sv_crouch 1")
-    if args.players > 1:
+    if args.multiplayer:
         # Multi Player mode
         game.add_game_args("-deathmatch +viz_nocheat 1 +viz_debug 0 +viz_respawn_delay 10")
     game.add_game_args("+viz_spectator 1")
@@ -191,6 +191,9 @@ if __name__ == "__main__":
     parser.add_argument('-w', '--watch', dest='watch', action='store_const',
                         default=True, const=True,
                         help='roam the map as a ghost spectator')
+    parser.add_argument('-mp', '--multiplayer', dest='multiplayer', action='store_true',
+                        default=False,
+                        help='Enables deathmatch for multiplayer modes')
 
     args = parser.parse_args()
     while True:
