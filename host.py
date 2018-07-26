@@ -190,6 +190,5 @@ if __name__ == "__main__":
                         help='roam the map as a ghost spectator')
 
     args = parser.parse_args()
-    exit(0)
     while True:
         run_game(args)
