@@ -52,6 +52,7 @@ def run_game(args):
     game.add_game_args("+sv_forcerespawn 1 +sv_noautoaim 1 +sv_respawnprotect 1 +sv_spawnfarthest 1 +sv_crouch 1")
     if args.multiplayer:
         # Multi Player mode
+        print("MULTIPLAYER MODE ::: ")
         game.add_game_args("-deathmatch +viz_nocheat 1 +viz_debug 0 +viz_respawn_delay 10")
     game.add_game_args("+viz_spectator 1")
     game.add_game_args("+name ghost")
