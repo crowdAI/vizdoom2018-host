@@ -24,7 +24,10 @@ docker run \
     ${container_name} \
     --env="DISPLAY" --privileged \
     ${image_tag} \
-    /home/crowdai/host.py <args>
+    /home/crowdai/run.sh <args>
+# <args> could be : 
+#    * for single player : `-b 0`
+#    * for multi player : `-b 6`
 ```
 The `args` in the above command can be replaced with : 
 ```
