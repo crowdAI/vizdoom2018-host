@@ -1,12 +1,10 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-
-from argparse import ArgumentParser, ArgumentDefaultsHelpFormatter
 import vizdoom as vzd
-from tabulate import tabulate
+from tabulate import tabulate    
+from argparse import ArgumentParser, ArgumentDefaultsHelpFormatter
 from warnings import warn
 import os
-import crowdai
 
 MAX_MAP = 5
 MAX_PLAYERS = 15
@@ -15,38 +13,7 @@ DEFAULT_TIMELIMIT = 5
 WAD_FILE = "mock.wad"
 FRAMERATE = 35
 
-crowdai.update_issue_state(['begin_grading']);
-
-if __name__ == "__main__":
-    parser = ArgumentParser("Host script for ViZDoom Copmetition at CIG 2017.",
-                            formatter_class=ArgumentDefaultsHelpFormatter)
-    parser.add_argument('-b', '--bots', metavar="BOTS_NUM", dest='bots_num',
-                        default=0, type=int,
-                        help='number of bots to add [0,15]')
-    parser.add_argument('-p', '--players', metavar="PLAYERS_NUM", dest='players_num',
-                        default=1, type=int,
-                        help='number of players [1,16]')
-    parser.add_argument('-m', '--map', metavar="MAP", dest='map',
-                        default=1, type=int,
-                        help='map number [1,{}]'.format(MAX_MAP))
-    parser.add_argument('-t', '--time', metavar="TIMELIMIT", dest='timelimit',
-                        default=DEFAULT_TIMELIMIT, type=float,
-                        help='timelimit in minutes [1,{}]'.format(MAX_TIMELIMIT))
-    parser.add_argument('-r', '--record', metavar="RECORD_FILE", dest='recordfile',
-                        default=None, type=str,
-                        help='file where  the match will be recorded')
-    parser.add_argument('-li', '--log-interval', metavar="LOG_INTERVAL", dest='log_interval',
-                        default=None, type=float,
-                        help='results logging inreval in minutes')
-    parser.add_argument('-dc', '--console', dest='disable_console', action='store_true',
-                        default=False,
-                        help='disables console output')
-    parser.add_argument('-w', '--watch', dest='watch', action='store_const',
-                        default=True, const=True,
-                        help='roam the map as a ghost spectator')
-
-    args = parser.parse_args()
-
+def run_game(args):
     players_num = args.players_num
     bots_num = args.bots_num
     map = "map0" + str(args.map)
@@ -190,6 +157,39 @@ if __name__ == "__main__":
 
     for _agent in unknown_agents:
         del player_frag_map[_agent]
+    
+    print("Player Frags : ", player_frag_map)
 
-    crowdai.update_issue_state(['waiting_for_video_generation']);
-    crowdai.update_scores_vizdoom(player_frag_map)
+
+if __name__ == "__main__":
+    parser = ArgumentParser("Host script for ViZDoom Copmetition at CIG 2018.",
+                            formatter_class=ArgumentDefaultsHelpFormatter)
+    parser.add_argument('-b', '--bots', metavar="BOTS_NUM", dest='bots_num',
+                        default=0, type=int,
+                        help='number of bots to add [0,15]')
+    parser.add_argument('-p', '--players', metavar="PLAYERS_NUM", dest='players_num',
+                        default=1, type=int,
+                        help='number of players [1,16]')
+    parser.add_argument('-m', '--map', metavar="MAP", dest='map',
+                        default=1, type=int,
+                        help='map number [1,{}]'.format(MAX_MAP))
+    parser.add_argument('-t', '--time', metavar="TIMELIMIT", dest='timelimit',
+                        default=DEFAULT_TIMELIMIT, type=float,
+                        help='timelimit in minutes [1,{}]'.format(MAX_TIMELIMIT))
+    parser.add_argument('-r', '--record', metavar="RECORD_FILE", dest='recordfile',
+                        default=None, type=str,
+                        help='file where  the match will be recorded')
+    parser.add_argument('-li', '--log-interval', metavar="LOG_INTERVAL", dest='log_interval',
+                        default=None, type=float,
+                        help='results logging inreval in minutes')
+    parser.add_argument('-dc', '--console', dest='disable_console', action='store_true',
+                        default=False,
+                        help='disables console output')
+    parser.add_argument('-w', '--watch', dest='watch', action='store_const',
+                        default=True, const=True,
+                        help='roam the map as a ghost spectator')
+
+    args = parser.parse_args()
+    exit(0)
+    while True:
+        run_game(args)
