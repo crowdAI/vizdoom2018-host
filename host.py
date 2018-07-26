@@ -50,7 +50,9 @@ def run_game(args):
     game.set_doom_scenario_path(WAD_FILE)
     game.add_game_args("+viz_nocheat 1 +viz_debug 0 +viz_respawn_delay 10")
     game.add_game_args("+sv_forcerespawn 1 +sv_noautoaim 1 +sv_respawnprotect 1 +sv_spawnfarthest 1 +sv_crouch 1")
-
+    if args.players > 1:
+        # Multi Player mode
+        game.add_game_args("-deathmatch +viz_nocheat 1 +viz_debug 0 +viz_respawn_delay 10")
     game.add_game_args("+viz_spectator 1")
     game.add_game_args("+name ghost")
     game.add_game_args("-host {}".format(players_num))
@@ -78,6 +80,7 @@ def run_game(args):
 
     game.set_window_visible(False)
     game.set_screen_resolution(vzd.ScreenResolution.RES_1024X576)
+    
 
     plural = "s"
     pn = "no"
